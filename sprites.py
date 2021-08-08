@@ -50,8 +50,8 @@ class Player(pg.sprite.Sprite):
 
         #JOYSTICK implementieren
 
-        self.joystick = pg.joystick.Joystick(0)
-        self.joystick.init()
+        #self.joystick = pg.joystick.Joystick(0)
+        #self.joystick.init()
 
     def jump(self):
         # Jump wird nur ausgeführt wenn sich etwas unter dem Spieler befindet
@@ -92,23 +92,27 @@ class Player(pg.sprite.Sprite):
 
 
     def update(self):
-        if self.joystick.get_button(9):
-            pg.quit()
+        #if self.joystick.get_button(9):
+        #    pg.quit()
+        keys=pygame.key.get_pressed()
         self.acc = vec(0, PLAYER_GRAV)
-        if self.joystick.get_button(13) and not self.SwordAttack:
+        #if self.joystick.get_button(13) and not self.SwordAttack:
+        if keys[pg.K_LEFT] and not keys[pg.K_RIGHT]:
             self.walkLeft = True
             self.walkRight = False
             self.idlingLeft = True
             self.idlingRight = False
             self.acc.x = -PLAYER_ACC
 
-        if self.joystick.get_button(14) and not self.SwordAttack:
+        #if self.joystick.get_button(14) and not self.SwordAttack:
+        if keys[pg.K_RIGHT] and not keys[pg.K_LEFT]:
             self.idlingRight = True
             self.idlingLeft = False
             self.walkRight = True
             self.walkLeft = False
             self.acc.x = PLAYER_ACC
-        elif not self.joystick.get_button(13) and not self.joystick.get_button(14):
+        #elif not self.joystick.get_button(13) and not self.joystick.get_button(14):
+        elif not keys[pg.K_RIGHT] and not keys[pg.K_LEFT]:
             self.walkLeft = False
             self.walkRight = False
 
@@ -217,7 +221,6 @@ class Player(pg.sprite.Sprite):
         ######## Sword Attack #########
 
         if (self.SwordAttack or (self.SwordAttack and self.walking))and self.grounded:
-            print(self)
             if now - self.lastUpdate > 100:
                 self.lastUpdate = now
                 self.FrameFromZero = (self.FrameFromZero + 1) % len(SwordAttack)

@@ -8,9 +8,6 @@ def loadPlayerProperties(mapId):
 
     elif mapId == "1":
         PlayerStartPosition = vec(10, 10)
-
-
-
     return PlayerStartPosition
 
 def loadGoblinProperties(mapId):

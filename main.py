@@ -21,11 +21,13 @@ class Game:
         self.clock = pg.time.Clock()						#Kontrolliert die Geschwindigkeit des Spiels und regelt die FPS
         self.running = True
         pg.mouse.set_visible(False)
+        keys=pygame.key.get_pressed()
 
+        self.mapId = "Tutorial"
         #JOYSTICK implementieren
 
-        self.joystick = pg.joystick.Joystick(0)
-        self.joystick.init()
+        #self.joystick = pg.joystick.Joystick(0)
+        #self.joystick.init()
 
     def new(self, mapId):                  #resets the Game
         self.all_sprites = pg.sprite.Group()
@@ -72,7 +74,6 @@ class Game:
             self.textSprites.add(self.tutText5)
             self.textSprites.add(self.tutText6)
             self.textSprites.add(self.tutText7)
-
         self.run()
 
 
@@ -113,8 +114,10 @@ class Game:
         self.camera.update(self.Player)
 
         if  self.Player.pos.x > 3700 and self.Player.pos.y > 1800:
-            mapId = "1"
-            g.new(mapId)
+            self.mapId = "1"
+            g.new(self.mapId)
+        if self.Player.vel.y > 100:
+            g.new(self.mapId)
 
     def events(self):               #GameLoop - events
         for event in pg.event.get():					#Damit Inputs sofort verarbeitet werden
@@ -123,16 +126,20 @@ class Game:
                 if self.playing:
                     self.playing = False
                 self.running = False
-            if event.type == pg.JOYBUTTONDOWN:
-                if self.joystick.get_button(0):
+            #if event.type == pg.JOYBUTTONDOWN:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                #if self.joystick.get_button(0):
                     self.Player.jump()
 
-            if event.type == pg.JOYBUTTONUP:
-                if self.joystick.get_button(0):
-                    self.Player.jumpBreak()
+            #if event.type == pg.JOYBUTTONUP:
+            #    if self.joystick.get_button(0):
+            #        self.Player.jumpBreak()
 
-            if self.joystick.get_button(1):
-            	self.Player.SwordAttack = True
+            #if self.joystick.get_button(1):
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                	self.Player.SwordAttack = True
 
 
 
