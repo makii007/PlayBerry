@@ -323,8 +323,8 @@ class Goblin(pg.sprite.Sprite):
                     elif hit.rect.right and self.pos.y > hit.rect.y:
                         self.vel.x = +2
 
-    def hit(self):
-        self.lifes -= 1
+#    def hit(self):
+#        self.lifes -= 1
 
 
     def distance(self, targetPos, distance):
