@@ -106,8 +106,8 @@ class Game:
                     goblin.walkRight = False
 
         if self.Player.SwordAttack:
-            if pg.sprite.spritecollide(self.Player, self.goblinSprites, False, pg.sprite.collide_mask):
-                    self.Goblin.hit()
+            pg.sprite.spritecollide(self.Player, self.goblinSprites, True, pg.sprite.collide_mask)
+            
         if self.Player.dead:
             g.show_go_screen()
 
