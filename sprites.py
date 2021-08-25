@@ -9,7 +9,7 @@ from Files import *
 vec = pg.math.Vector2                               #2D Vector
 
 class Player(pg.sprite.Sprite):
-    def __init__(self, game, pos):
+    def __init__(self, game, pos, mapId):
         self.game = game
         self.playerWidth = 20
         self.playerHeight = 32
@@ -19,7 +19,12 @@ class Player(pg.sprite.Sprite):
         #self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
+
+        global startingPosition
+
         self.pos = pos
+        startingPosition = loadPlayerProperties(mapId)
+
         self.vel = vec(0, 0)
         self.acc = vec(0, 0)
         self.jumps = 1
@@ -94,7 +99,6 @@ class Player(pg.sprite.Sprite):
     def update(self):
         #if self.joystick.get_button(9):
         #    pg.quit()
-        print(self.pos)
         keys=pygame.key.get_pressed()
         self.acc = vec(0, PLAYER_GRAV)
         #if self.joystick.get_button(13) and not self.SwordAttack:
@@ -248,8 +252,10 @@ class Player(pg.sprite.Sprite):
                 self.image = PlayerDying[self.FrameFromZero]
 
                 if self.FrameFromZero == len(PlayerDying)-1:
+                    print(startingPosition)
+                    self.pos = startingPosition
                     FrameFromZero = 0
-                    self.pos.x = 800
+                    self.awake = True
                     self.dead = False
                     self.lifes = 3
 

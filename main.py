@@ -44,7 +44,7 @@ class Game:
         self.camera = Camera(WIDTH*2,HEIGHT)
 
         # ADD PLAYER
-        self.Player = Player (self, loadPlayerProperties(mapId))        #Um dem Player alle Gamevariablen mitzugeben
+        self.Player = Player (self, loadPlayerProperties(mapId), mapId)        #Um dem Player alle Gamevariablen mitzugeben
         self.all_sprites.add(self.Player)
 
         # ADD OBJECTS
