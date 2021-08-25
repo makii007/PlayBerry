@@ -166,7 +166,7 @@ class Player(pg.sprite.Sprite):
 
                 if self.FrameFromZero == len(PlayerAwake)-1:
                     self.awake = False
-                    self.idlingRight == True
+                    self.idlingRight = True
                     self.lifes = 3
 
         ###### WALKING #######
