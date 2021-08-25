@@ -87,7 +87,7 @@ class Player(pg.sprite.Sprite):
             self.lifes -= 1
             if self.lifes > 0:
                 self.hit = True
-            if self.lifes == 0:
+            else:
                 self.dead = True
 
 
@@ -97,7 +97,7 @@ class Player(pg.sprite.Sprite):
         keys=pygame.key.get_pressed()
         self.acc = vec(0, PLAYER_GRAV)
         #if self.joystick.get_button(13) and not self.SwordAttack:
-        if keys[pg.K_LEFT] and not keys[pg.K_RIGHT]:
+        if keys[pg.K_LEFT] and not keys[pg.K_RIGHT] and not self.SwordAttack:
             self.walkLeft = True
             self.walkRight = False
             self.idlingLeft = True
@@ -105,7 +105,7 @@ class Player(pg.sprite.Sprite):
             self.acc.x = -PLAYER_ACC
 
         #if self.joystick.get_button(14) and not self.SwordAttack:
-        if keys[pg.K_RIGHT] and not keys[pg.K_LEFT]:
+        if keys[pg.K_RIGHT] and not keys[pg.K_LEFT] and not self.SwordAttack:
             self.idlingRight = True
             self.idlingLeft = False
             self.walkRight = True

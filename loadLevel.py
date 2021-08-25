@@ -10,7 +10,6 @@ def loadMap(mapId):
     PLATFORM_LIST = []
     levelText = f.read()
     print(levelText)
-    #number = 0
     stringNumber = ''
     x=0
     y=0
