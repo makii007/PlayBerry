@@ -17,3 +17,10 @@ def loadGoblinProperties(mapId):
     elif mapId == "1":
         goblinList = [(345, 580), (828, 340), (1088, 540),(2400, 580), (2946, 380), (5110, 560),(5185, 560), (5272, 560), (5411, 560),(5476, 560), (5560, 560), (5687, 560)]
     return goblinList
+
+def doorProperties(mapId):
+    if mapId == "Tutorial":
+        position = vec(3640, 1840)
+    elif mapId == "1":
+        position = vec(0,0)
+    return position

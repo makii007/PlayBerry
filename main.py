@@ -34,6 +34,7 @@ class Game:
         self.platforms = pg.sprite.Group()
         self.goblinSprites = pg.sprite.Group()
         self.textSprites = pg.sprite.Group()
+        self.objects = pg.sprite.Group()
 
         self.platformList = loadMap(mapId)
         for plat in self.platformList:
@@ -46,6 +47,9 @@ class Game:
         self.Player = Player (self, loadPlayerProperties(mapId))        #Um dem Player alle Gamevariablen mitzugeben
         self.all_sprites.add(self.Player)
 
+        # ADD OBJECTS
+        self.door = randomObjects(objDoor, doorProperties(mapId))
+        self.objects.add(self.door)
         # ADD GOBLIN
 
         self.Goblins = []
@@ -110,11 +114,17 @@ class Game:
         if self.Player.dead:
             g.show_go_screen()
 
+        if pg.sprite.spritecollide(self.Player, self.objects, False):
+            if self.mapId == "Tutorial":
+                self.mapId = "1"
+            elif mapId == "1":
+                print("end")
+            g.new(self.mapId)
+
         self.camera.update(self.Player)
 
-        if  self.Player.pos.x > 3700 and self.Player.pos.y > 1800:
-            self.mapId = "1"
-            g.new(self.mapId)
+        #if  self.Player.pos.x > 3700 and self.Player.pos.y > 1800:
+
         if self.Player.vel.y > 100:
             g.new(self.mapId)
 
@@ -157,6 +167,8 @@ class Game:
         for sprite in self.textSprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
 
+        for sprite in self.objects:
+            self.screen.blit(sprite.image, self.camera.apply(sprite))
 
         pg.display.flip()
 

@@ -94,6 +94,7 @@ class Player(pg.sprite.Sprite):
     def update(self):
         #if self.joystick.get_button(9):
         #    pg.quit()
+        print(self.pos)
         keys=pygame.key.get_pressed()
         self.acc = vec(0, PLAYER_GRAV)
         #if self.joystick.get_button(13) and not self.SwordAttack:
@@ -438,15 +439,12 @@ class Text(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = vec(x, y)
 
+class randomObjects(pg.sprite.Sprite):
+    def __init__(self, pic,location):
 
-#class Text_old(pg.sprite.Sprite):
-#    def __init__(self, text, size, color, width, height):
-#        # Call the parent class (Sprite) constructor
-#        pygame.sprite.Sprite.__init__(self)
-#
-#        self.font = pygame.font.SysFont("Arial", size)
-#        self.textSurf = self.font.render(text, 1, color)
-#        self.image = pygame.Surface((width, height))
-#        W = self.textSurf.get_width()
-#        H = self.textSurf.get_height()
-#        self.image.blit(self.textSurf, [width/2 - W/2, height/2 - H/2])
+        pg.sprite.Sprite.__init__(self)
+        self.image = pg.Surface((48,48))
+        self.image = pic
+        self.rect = self.image.get_rect()
+        #self.rect.center = vec(3640, 1840)
+        self.rect.center = location

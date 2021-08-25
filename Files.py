@@ -242,3 +242,8 @@ tut4 = pygame.image.load("Sprites/Text/Tutorial/04.png")
 tut5 = pygame.image.load("Sprites/Text/Tutorial/05.png")
 tut6 = pygame.image.load("Sprites/Text/Tutorial/06.png")
 tut7 = pygame.image.load("Sprites/Text/Tutorial/07.png")
+
+################ O B J E C T S ####################
+
+objDoor = pygame.image.load("Sprites/Objects/door.png")
+objDoor = pygame.transform.scale(objDoor, (48, 48))
