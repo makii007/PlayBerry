@@ -151,16 +151,6 @@ for element in OriginalSize:
     element = pygame.transform.scale(element, (width, height))
     PlayerHit.append(element)
 
-
-
-
-
-
-
-
-
-
-
 ###################
 
 ######ENEMY########
