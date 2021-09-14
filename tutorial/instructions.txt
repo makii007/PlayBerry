@@ -1,0 +1,15 @@
+Steuerung
+- - - - - - - - - - - -
+
+Benutze das Steuerkreuz, um dich nach RECHTS oder LINKS zu bewegen
+
+
+Mit der Taste A kannst du SPRINGEN
+
+Halte die A Taste gedrueckt, um WEIT zu SPRINGEN
+
+Druecke A doppelt, um einen DOPPELSPRUNG durchzufuehren.
+
+
+Um einen Gegner ANZUGREIFEN, druecke die Taste B.
+

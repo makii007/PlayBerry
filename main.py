@@ -9,8 +9,6 @@ from loadLevel import *
 from camera import *
 from Files import *
 
-
-
 class Game:
     def __init__(self):               #startup initializes(Game Window)
 
@@ -21,8 +19,9 @@ class Game:
         self.clock = pg.time.Clock()						#Kontrolliert die Geschwindigkeit des Spiels und regelt die FPS
         self.running = True
         pg.mouse.set_visible(False)
+        self.font=pg.font.Font("tutorial/Comfortaa-Regular.ttf", 16)
         keys=pygame.key.get_pressed()
-
+        self.instructionPage = 1
         self.mapId = "Tutorial"
         #JOYSTICK implementieren
 
@@ -123,7 +122,6 @@ class Game:
 
         self.camera.update(self.Player)
 
-        #if  self.Player.pos.x > 3700 and self.Player.pos.y > 1800:
 
         if self.Player.vel.y > 100:
             g.new(self.mapId)
@@ -150,8 +148,12 @@ class Game:
                 if event.key == pygame.K_SPACE:
                 	self.Player.SwordAttack = True
 
-
-
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_h:
+                    instructions = [line.strip('\n')
+                            for line in open('tutorial/instructions.txt', 'r').readlines()]
+                    g.drawInstructions(instructions)
+                    self.instructionPage = 1
 
     def draw (self):                #GameLoop - Draw
         global walkFrame
@@ -172,6 +174,31 @@ class Game:
 
         pg.display.flip()
 
+
+    def drawInstructions(self, instructions):
+        pygame.event.clear()
+        self.screen.fill(GREY)
+        for n, line in enumerate(instructions):
+            text = self.font.render(line, 1, PURPLE)
+            text_rect = text.get_rect()
+            text_rect.centerx = [WIDTH, HEIGHT][0]//2
+            text_rect.centery = n*25 + 50
+            self.screen.blit(text, text_rect)
+            pg.display.flip()
+        while True:
+            event = pygame.event.wait()
+            if event.type == pg.KEYDOWN and self.instructionPage == 1:
+                self.instructionPage = 2
+                instructions = [line.strip('\n')
+                        for line in open('tutorial/Gameplay.txt', 'r').readlines()]
+                g.drawInstructions(instructions)
+            if event.type == pg.KEYDOWN and self.instructionPage == 2:
+                #self.instructionPage = 1
+                break
+        #self.take()
+
+        #https://gist.github.com/nikolajlauridsen/3a26bba963eac605d5aed07e5d6b107f
+
     def show_start_screen(self):
         print("startscreen")
         pass
@@ -179,7 +206,6 @@ class Game:
     def show_go_screen(self):
         #Game Over screen
         pass
-
 
 g = Game()
 g.show_start_screen()

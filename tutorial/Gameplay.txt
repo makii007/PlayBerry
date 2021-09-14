@@ -1,0 +1,14 @@
+Gameplay
+- - - - - - - - - - - -
+
+Das Spiel startet mit einem Tutorial-Level. 
+Hier wird alles nochmal erklaert und du kannst 
+die Steuerung ausprobieren
+
+Bis du am Ende des Levels angekommen, musst du durch das 
+Portal schreiten, um zum eigentlichem Level zu gelangen. 
+
+Du besitzt 3 Leben, welche dir durch Feinde abgenommen werden koennen. 
+
+Faellst du oder hast kein Leben mehr, 
+wirst du an den Start des Levels telepotiert.
